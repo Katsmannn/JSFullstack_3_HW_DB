@@ -19,7 +19,7 @@ CREATE TABLE positions (
     description text
 );
 
-// Сотрудники
+-- Сотрудники
 CREATE TABLE employees (
     id              serial PRIMARY KEY,
     user_id         int NOT NULL UNIQUE REFERENCES users (id),
@@ -28,14 +28,14 @@ CREATE TABLE employees (
     work_phone      varchar  
 );
 
-// Покупатели
+-- Покупатели
 CREATE TABLE customers (
     id              serial PRIMARY KEY,
     user_id         int NOT NULL UNIQUE REFERENCES users (id),
     contact_phone   varchar
 );
 
-//Единицы измерения
+-- Единицы измерения
 CREATE TABLE units (
     id      serial PRIMARY KEY,
     name    varchar UNIQUE
@@ -77,5 +77,5 @@ CREATE TABLE orders_products (
     order_id    REFERENCES orders (id),
     product_id  REFERENCES products (id),
     amount      smallint CHECK (amount>0),
-    UNIQUE (customer_id, product_id)
+    UNIQUE (order_id, product_id)
 );
